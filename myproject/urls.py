@@ -16,7 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from school_app import views
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('signup_teacher/', views.signupPage_teacher,name='signup_teacher'),
+    path('login_teacher/', views.loginPage_teacher,name='login_teacher'),
+    path('signup_student/', views.signupPage_student,name='signup_student'),
+    path('login_student/', views.loginPage_student,name='login_student'),
+    path('admin_dashboard/',views.admin_dashboard,name='admin_dashboard'),
+    path('student_profile_dashboard/',views.student_profile_dashboard,name='student_profile_dashboard')
 ]
+
+# to view the image in web
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
